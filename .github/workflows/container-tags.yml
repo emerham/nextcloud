@@ -12,7 +12,7 @@ jobs:
     steps:
       -
         name: Get tag name
-        run: echo "TAG=${GITHUB_REF/refs\/tags\///}" >> $GITHUB_ENV
+        run: echo "TAG=${GITHUB_REF/refs\/tags\/\///}" >> $GITHUB_ENV
       -
         name: Checkout
         uses: actions/checkout@v2
