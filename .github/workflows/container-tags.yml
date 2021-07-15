@@ -1,4 +1,4 @@
-name: Build Nextcloud Image Latest
+name: Build Nextcloud Image with Tag
 
 on:
   push:
