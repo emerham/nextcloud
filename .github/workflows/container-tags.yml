@@ -11,11 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -
-        name: Get tag name
-        run: echo "TAG=${GITHUB_REF/refs\/tags\/\///}" >> $GITHUB_ENV
-      -
         name: Checkout
         uses: actions/checkout@v2
+      -
+        name: Docker Meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: |
+            brabhamm/nextcloud
+          tags: |
+            type=schedule
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
+            type=semver,pattern={{major}}
+            type=sha
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -37,4 +47,5 @@ jobs:
           context: .
           push: true
           platforms: linux/amd64,linux/arm64/v8,linux/arm/v7
-          tags: brabhamm/nextcloud:${{ env.TAG }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta.outputs.tags }}
