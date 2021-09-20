@@ -1,4 +1,10 @@
-FROM docker.io/library/nextcloud:latest
+FROM docker.io/library/nextcloud:22.1.0
+RUN apt-get update && apt-get upgrade -y; \
+    apt-get install -y \
+        vim \
+        curl; \
+    apt-get autoclean; \
+    rm -rf /var/lib/apt/lists/*
 RUN set -eux; \
     { \
     echo 'redis.session.locking_enabled=1'; \
