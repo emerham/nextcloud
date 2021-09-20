@@ -1,4 +1,4 @@
-FROM docker.io/library/nextcloud:22.1.0
+FROM docker.io/library/nextcloud:22.1.1
 RUN apt-get update && apt-get upgrade -y; \
     apt-get install -y \
         vim \
