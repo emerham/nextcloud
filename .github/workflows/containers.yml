@@ -1,9 +1,9 @@
-name: Build Nextcloud Image with Tag
+name: Build Nextcloud Images
 
 on:
   push:
     branches:
-      - "!*"
+      - "*"
     tags:
       - '*'
 jobs:
